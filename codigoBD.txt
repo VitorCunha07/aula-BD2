@@ -1,0 +1,25 @@
+Table pacientes{
+  id uuid [pk, not null, unique] 
+  nome_paciente text [not null]
+  
+}
+
+Table medicos{
+  id uuid [pk, not null, unique]
+  cim text [unique, not null]
+  nome_medico text [not null]
+}
+
+table consultas{
+  id uuid [pk, not null, unique]
+  id_paciente uuid [not null]
+  id_medico uuid [not null]
+  desc_sintomas text [not null]
+  hora_inicio timestamp [not null]
+  hora_fim timestamp [not null]
+
+}
+
+Ref: "pacientes"."id" < "consultas"."id_paciente"
+
+Ref: "medicos"."id" < "consultas"."id_medico"
